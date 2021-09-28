@@ -23,12 +23,12 @@ namespace Challenge1_Repo
         }
 
         //READ - VIEW
-        public List<MenuItem> ViewAllThread()
+        public List<MenuItem> ViewAllMeals()
         {
             return _ListOfMenuItems;
         }
 
-        public MenuItem ViewItemByNumber(int mealNumber)
+        public MenuItem ViewMealByNumber(int mealNumber)
         {
             foreach(MenuItem meal in _ListOfMenuItems)
             {
