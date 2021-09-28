@@ -41,8 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuRepo.cs" />
+    <Compile Include="MenuItemRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Challenge1_POCO\Challenge1_POCO.csproj">
+      <Project>{e3e71ffe-9f15-4a0c-a7f4-9566ea2678f2}</Project>
+      <Name>Challenge1_POCO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
