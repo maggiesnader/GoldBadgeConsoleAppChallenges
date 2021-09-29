@@ -33,15 +33,19 @@ namespace Challenge1_UI
                 {
                     case "1":
                         DisplayAllMeals();
+                        Console.Clear();
                         break;
                     case "2":
                         DisplayByMealNumber();
+                        Console.Clear();
                         break;
                     case "3":
                         CreateNewMeal();
+                        Console.Clear();
                         break;
                     case "4":
                         DeleteMeal();
+                        Console.Clear();
                         break;
                     case "5":
                         Console.Clear();
@@ -59,6 +63,8 @@ namespace Challenge1_UI
                 Console.WriteLine($"\n{meal.MealNumber}. {meal.MealName}:\n" +
                     $"{meal.MealDescription}\n");
             }
+            Console.WriteLine("\nPress any key to continue:");
+            Console.ReadKey();
         }
         private void DisplayByMealNumber()
         {
@@ -77,21 +83,29 @@ namespace Challenge1_UI
             {
                 Console.WriteLine("No meal with that number. Try Again...");
             }
+
+            Console.WriteLine("\nPress any key to continue:");
+            Console.ReadKey();
         }
         private void CreateNewMeal()
         {
             Console.Clear();
             MenuItem newMeal = new MenuItem();
-            Console.WriteLine("Enter the new Meal's number (1, 2, 3):\n");
+            Console.WriteLine("\nEnter the new Meal's number (1, 2, 3):\n");
             newMeal.MealNumber = Console.ReadLine();
-            Console.WriteLine("Enter the new Meal's name:\n");
+            Console.WriteLine("\nEnter the new Meal's name:\n");
             newMeal.MealName = Console.ReadLine();
-            Console.WriteLine("Enter the new Meal's description:\n");
+            Console.WriteLine("\nEnter the new Meal's description:\n");
             newMeal.MealDescription = Console.ReadLine();
-            Console.WriteLine("Enter the new Meal's list of ingredients:\n");
+            Console.WriteLine("\nEnter the new Meal's list of ingredients:\n");
             newMeal.MealIngredients = Console.ReadLine();
-            Console.WriteLine("Enter the price of the new Meal (12.99, 9.87, 5.00):\n");
+            Console.WriteLine("\nEnter the price of the new Meal (12.99, 9.87, 5.00):\n");
             newMeal.MealPrice = decimal.Parse(Console.ReadLine());
+
+            _menuItemRepo.AddMenuItemToList(newMeal);
+
+            Console.WriteLine("\nUpdate Complete. Press any key to continue:");
+            Console.ReadKey();
         }
         private void DeleteMeal()
         {
@@ -117,6 +131,5 @@ namespace Challenge1_UI
             _menuItemRepo.AddMenuItemToList(seedMeal1);
             _menuItemRepo.AddMenuItemToList(seedMeal2);
         }
-
     }
 }
