@@ -10,8 +10,6 @@ namespace Challenge1_Repo
     public class MenuItemRepo
     {
         private List<MenuItem> _ListOfMenuItems = new List<MenuItem>();
-
-        //CREATE - ADD
         public bool AddMenuItemToList(MenuItem itemToBeAdded)
         {
             if(itemToBeAdded != null)
@@ -21,14 +19,11 @@ namespace Challenge1_Repo
             }
             return false;
         }
-
-        //READ - VIEW
         public List<MenuItem> ViewAllMeals()
         {
             return _ListOfMenuItems;
         }
-
-        public MenuItem ViewMealByNumber(int mealNumber)
+        public MenuItem ViewMealByNumber(string mealNumber)
         {
             foreach(MenuItem meal in _ListOfMenuItems)
             {
@@ -39,13 +34,9 @@ namespace Challenge1_Repo
             }
             return null;
         }
-
-        //UPDATE--NOT REQUIRED ON PROMPT
-        public bool UpdateExistingMenuItem(int mealNumber, MenuItem newMenuItemInfo)
+        public bool UpdateExistingMenuItem(string mealNumber, MenuItem newMenuItemInfo)
         {
-            //find the content
-            MenuItem oldMenuItemInfo = ViewItemByNumber(mealNumber);
-            //update the content
+            MenuItem oldMenuItemInfo = ViewMealByNumber(mealNumber);
             if(oldMenuItemInfo != null)
             {
                 oldMenuItemInfo.MealNumber = newMenuItemInfo.MealNumber;
@@ -57,11 +48,9 @@ namespace Challenge1_Repo
             }
             return false;
         }
-
-        //DELETE
-        public bool RemoveMenuItem (int mealNumber)
+        public bool RemoveMenuItem (string mealNumber)
         {
-            MenuItem meal = ViewItemByNumber(mealNumber);
+            MenuItem meal = ViewMealByNumber(mealNumber);
             if(meal == null)
             {
                 return false;

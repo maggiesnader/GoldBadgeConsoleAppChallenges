@@ -13,54 +13,43 @@ namespace Challenge1_UI
         private MenuItemRepo _menuItemRepo = new MenuItemRepo();
         public void Run()
         {
-            SeedMealList();
+            SeedMeals();
             Menu();
         }
-
-        //Menu
         private void Menu()
         {
             bool keepRunning = true;
             while (keepRunning)
             {
-                DisplayMenu();
-                MenuOptions();
-            }
-        }
-        private void DisplayMenu()
-        {
-            Console.WriteLine("Komodo Cafe\n" +
+                Console.WriteLine("Komodo Cafe\n" +
                 "Select a Menu Option:\n" +
                 "1. View All Meals\n" +
                 "2. View Meal by Meal Number\n" +
                 "3. Add Meal\n" +
                 "4. Delete Meal\n" +
                 "5. Exit");
-        }
-        private void MenuOptions()
-        {
-            string userInput = Console.ReadLine();
-            switch (userInput)
-            {
-                case "1":
-                    DisplayAllMeals();
-                    break;
-                case "2":
-                    DisplayByMealNumber();
-                    break;
-                case "3":
-                    //
-                    break;
-                case "4":
-                    //
-                    break;
-                case "5":
-                    //
-                    break;
+                string userInput = Console.ReadLine();
+                switch (userInput)
+                {
+                    case "1":
+                        DisplayAllMeals();
+                        break;
+                    case "2":
+                        DisplayByMealNumber();
+                        break;
+                    case "3":
+                        CreateNewMeal();
+                        break;
+                    case "4":
+                        DeleteMeal();
+                        break;
+                    case "5":
+                        Console.Clear();
+                        keepRunning = false;
+                        break;
+                }
             }
         }
-
-        // 1. View all meals
         private void DisplayAllMeals()
         {
             Console.Clear();
@@ -71,16 +60,12 @@ namespace Challenge1_UI
                     $"{meal.MealDescription}\n");
             }
         }
-
-        // 2. view meal by number
         private void DisplayByMealNumber()
         {
             Console.Clear();
-            //get #
             Console.WriteLine("Enter a Meal Number to see its full details:");
-            int mealNumber = int.Parse(Console.ReadLine());
+            string mealNumber = Console.ReadLine();
             MenuItem meal = _menuItemRepo.ViewMealByNumber(mealNumber);
-            //display
             if(meal != null)
             {
                 Console.WriteLine($"\n{meal.MealNumber}. {meal.MealName}:\n" +
@@ -93,20 +78,45 @@ namespace Challenge1_UI
                 Console.WriteLine("No meal with that number. Try Again...");
             }
         }
-
-        // 3. create meal
         private void CreateNewMeal()
         {
             Console.Clear();
             MenuItem newMeal = new MenuItem();
-
+            Console.WriteLine("Enter the new Meal's number (1, 2, 3):\n");
+            newMeal.MealNumber = Console.ReadLine();
+            Console.WriteLine("Enter the new Meal's name:\n");
+            newMeal.MealName = Console.ReadLine();
+            Console.WriteLine("Enter the new Meal's description:\n");
+            newMeal.MealDescription = Console.ReadLine();
+            Console.WriteLine("Enter the new Meal's list of ingredients:\n");
+            newMeal.MealIngredients = Console.ReadLine();
+            Console.WriteLine("Enter the price of the new Meal (12.99, 9.87, 5.00):\n");
+            newMeal.MealPrice = decimal.Parse(Console.ReadLine());
         }
+        private void DeleteMeal()
+        {
+            Console.Clear();
+            DisplayAllMeals();
+            Console.WriteLine("Enter the Meal Number of the meal you would like to delete:\n");
+            string userInput = Console.ReadLine();
 
-        // 4. Delete meal
-        // 5. Exit
-
-        //SEED MEALS
-        
+            bool wasDeleted = _menuItemRepo.RemoveMenuItem(userInput);
+            if (wasDeleted)
+            {
+                Console.WriteLine("The meal was successfully deleted.");
+            }
+            else
+            {
+                Console.WriteLine("The meal could not be deleted.");
+            }
+        }
+        private void SeedMeals()
+        {
+            MenuItem seedMeal1 = new MenuItem("1", "Grilled Cheese", "Smoked Cheddar and Gouda cheese on Rye bread, served with a cup of Tomato Soup.", "Rye bread, cheddar cheese, gouda cheese, butter, tomato, herbs", 8.99m);
+            MenuItem seedMeal2 = new MenuItem("2", "Ham and Cheese Croissant", "Homemade croissant with sliced ham, swiss cheese, and horseradish mustard", "Wheeat Flour, Butter, Smoked Ham, Salt, Egg, Swiss Cheese, Horseradish Mustard", 7.99m);
+            _menuItemRepo.AddMenuItemToList(seedMeal1);
+            _menuItemRepo.AddMenuItemToList(seedMeal2);
+        }
 
     }
 }

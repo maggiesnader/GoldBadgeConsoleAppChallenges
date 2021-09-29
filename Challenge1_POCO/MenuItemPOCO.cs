@@ -8,7 +8,7 @@ namespace Challenge1_POCO
 {
     public class MenuItem
     {
-        public int MealNumber { get; set; }
+        public string MealNumber { get; set; }
         public string MealName { get; set; }
         public string MealDescription { get; set; }
         public string MealIngredients { get; set; }
@@ -16,7 +16,7 @@ namespace Challenge1_POCO
 
         public MenuItem() { }
 
-        public MenuItem(int mealNumber, string mealName, string mealDescription, string mealIngredients, decimal mealPrice)
+        public MenuItem(string mealNumber, string mealName, string mealDescription, string mealIngredients, decimal mealPrice)
         {
             MealNumber = mealNumber;
             MealName = mealName;
