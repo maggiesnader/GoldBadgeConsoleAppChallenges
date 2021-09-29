@@ -128,7 +128,6 @@ namespace Challenge1_UI
             Console.WriteLine("\nPress any key to continue:");
             Console.ReadKey();
         }
-
         private void SeedMeals()
         {
             MenuItem seedMeal1 = new MenuItem("1", "Grilled Cheese", "Smoked Cheddar and Gouda cheese on Rye bread, served with a cup of Tomato Soup.", "Rye bread, cheddar cheese, gouda cheese, butter, tomato, herbs", 8.99m);
