@@ -33,6 +33,7 @@ namespace Challenge1_UI
                 {
                     case "1":
                         DisplayAllMeals();
+                        PressAnyKey();
                         Console.Clear();
                         break;
                     case "2":
@@ -61,10 +62,8 @@ namespace Challenge1_UI
             foreach(MenuItem meal in listOfMeals)
             {
                 Console.WriteLine($"\n{meal.MealNumber}. {meal.MealName}:\n" +
-                    $"{meal.MealDescription}\n");
+                    $"\t{meal.MealDescription}\n");
             }
-            Console.WriteLine("\nPress any key to continue:");
-            Console.ReadKey();
         }
         private void DisplayByMealNumber()
         {
@@ -74,6 +73,7 @@ namespace Challenge1_UI
             MenuItem meal = _menuItemRepo.ViewMealByNumber(mealNumber);
             if(meal != null)
             {
+                Console.Clear();
                 Console.WriteLine($"\n{meal.MealNumber}. {meal.MealName}:\n" +
                     $"\t${meal.MealPrice}\n" +
                     $"\t{meal.MealDescription}\n" +
@@ -83,9 +83,7 @@ namespace Challenge1_UI
             {
                 Console.WriteLine("No meal with that number. Try Again...");
             }
-
-            Console.WriteLine("\nPress any key to continue:");
-            Console.ReadKey();
+            PressAnyKey();
         }
         private void CreateNewMeal()
         {
@@ -111,19 +109,26 @@ namespace Challenge1_UI
         {
             Console.Clear();
             DisplayAllMeals();
-            Console.WriteLine("Enter the Meal Number of the meal you would like to delete:\n");
+            Console.WriteLine("\n\nEnter the Meal Number of the meal you would like to delete:\n");
             string userInput = Console.ReadLine();
 
             bool wasDeleted = _menuItemRepo.RemoveMenuItem(userInput);
             if (wasDeleted)
             {
-                Console.WriteLine("The meal was successfully deleted.");
+                Console.WriteLine("\nThe meal was successfully deleted.");
             }
             else
             {
-                Console.WriteLine("The meal could not be deleted.");
+                Console.WriteLine("\nThe meal could not be deleted.");
             }
+            PressAnyKey();
         }
+        private void PressAnyKey()
+        {
+            Console.WriteLine("\nPress any key to continue:");
+            Console.ReadKey();
+        }
+
         private void SeedMeals()
         {
             MenuItem seedMeal1 = new MenuItem("1", "Grilled Cheese", "Smoked Cheddar and Gouda cheese on Rye bread, served with a cup of Tomato Soup.", "Rye bread, cheddar cheese, gouda cheese, butter, tomato, herbs", 8.99m);
