@@ -39,7 +39,7 @@ namespace Challenge4_Repo
             }
             return null;
         }
-        public Outing ViewOutingByTitle(string outingTitle)
+        /*public Outing ViewOutingByTitle(string outingTitle)
         {
             foreach(Outing outing in _ListOfOutings)
             {
@@ -49,7 +49,7 @@ namespace Challenge4_Repo
                 }
             }
             return null;
-        }
+        }*/
         public Outing ViewOutingByType(OutingType typeOfOuting)
         {
             foreach(Outing outing in _ListOfOutings)
