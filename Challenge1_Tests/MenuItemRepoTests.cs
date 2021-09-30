@@ -80,13 +80,20 @@ namespace Challenge1_Tests
         }
 
         [TestMethod]
-        public void DeleteMenuAItem_ShouldReturnTrue()
+        public void DeleteMenuItem_ShouldReturnTrue()
         {
             MenuItem newMeal = new MenuItem("5", "Blueberry Scone", "Homemade scone filled with blueberries and ricotta cheese.", "Flour, Butter, Sugar, Salt, Cream, Egg, Blueberry, Ricotta, Cinnamon", 7.99m);
             
             bool deleteResult = _repo.RemoveMenuItem(newMeal.MealNumber);
 
             Assert.IsTrue(deleteResult);
+        }
+        [TestMethod]
+        public void DeleteMenuItem_ShouldReturnFalse()
+        {
+            MenuItem newMeal = new MenuItem();
+            bool deleteResult = _repo.RemoveMenuItem(newMeal.MealNumber);
+            Assert.IsFalse(deleteResult);
         }
     }
 }
