@@ -49,7 +49,8 @@ namespace Challenge1_UI
                         Console.Clear();
                         break;
                     case "5":
-                        Console.Clear();
+                        Console.WriteLine("Goodbye!");
+                        Console.ReadKey();
                         keepRunning = false;
                         break;
                 }
