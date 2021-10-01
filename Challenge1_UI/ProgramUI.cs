@@ -53,6 +53,9 @@ namespace Challenge1_UI
                         Console.ReadKey();
                         keepRunning = false;
                         break;
+                    default:
+                        Console.WriteLine("Please enter a valid number.");
+                        break;
                 }
             }
         }

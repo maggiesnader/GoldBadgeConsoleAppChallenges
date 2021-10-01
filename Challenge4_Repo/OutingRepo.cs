@@ -39,6 +39,7 @@ namespace Challenge4_Repo
             }
             return null;
         }
+
         /*public Outing ViewOutingByTitle(string outingTitle)
         {
             foreach(Outing outing in _ListOfOutings)
@@ -50,17 +51,30 @@ namespace Challenge4_Repo
             }
             return null;
         }*/
+        
         public Outing ViewOutingByType(OutingType typeOfOuting)
         {
-            foreach(Outing outing in _ListOfOutings)
+            foreach (Outing outing in _ListOfOutings)
             {
-                if(outing.TypeOfOuting == typeOfOuting)
+                if (outing.TypeOfOuting == typeOfOuting)
                 {
-                    return outing;
+                    Console.WriteLine($"\n\n{outing.OutingTitle}:\n" +
+                    $"ID Number: {outing.ID}\n" +
+                    $"Type: {outing.TypeOfOuting}\n" +
+                    $"\tDate: {outing.OutingDate}\n" +
+                    $"\tNumber of Attendees: {outing.NumberOfAttendees}\n" +
+                    $"\tCost Per Person: ${outing.CostPerPerson}\n" +
+                    $"\tTotal Cost: ${outing.TotalCost}");
                 }
             }
             return null;
         }
+
+        public decimal GetOutingCostTotalByType(OutingType typeOfOuting)
+        {
+            
+        }
+
         //update 
         public bool UpdateExistingOuting(int id, Outing updatedOutingInfo)
         {
