@@ -102,9 +102,9 @@ namespace Challenge4_UI
         private void DisplayAllOutings()
         {
             Console.Clear();
-            List<Outing> listOfOutings = outingRepo.ViewAllOutings();
+            List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
 
-            foreach (Outing outing in listOfOutings)
+            foreach (Outing outing in _ListOfOutings)
             {
                 Console.WriteLine($"{outing.OutingTitle}:\n" +
                     $"ID Number: {outing.ID}\n" +
@@ -119,7 +119,7 @@ namespace Challenge4_UI
         {
             Console.Clear();
             Outing newOuting = new Outing();
-            List<Outing> listOfOutings = outingRepo.ViewAllOutings();
+            //List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
 
             Console.WriteLine("Enter the type of outing you would like to see the total cost of(1, 2, 3, or 4):\n" +
                     "1. Golf\n" +
@@ -130,14 +130,9 @@ namespace Challenge4_UI
             int userInputInt = int.Parse(userInputString);
             newOuting.TypeOfOuting = (OutingType)userInputInt;
 
+            Console.Clear();
             outingRepo.ViewOutingByType((OutingType)userInputInt);
-            foreach (newOuting in listOfOutings)
-            {
-                //decimal typeTotal = typeTotal + newOuting.TotalCost;
-            }
-            
-
-            //ADD TOTAL COST's  OF "GOLF" "BOWLING" ETC
+            outingRepo.GetOutingCostTotalByType((OutingType)userInputInt);
             PressAnyKey();
         }
 

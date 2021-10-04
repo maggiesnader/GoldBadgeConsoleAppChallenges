@@ -10,6 +10,7 @@ namespace Challenge4_Repo
     public class OutingRepo
     {
         private List<Outing> _ListOfOutings = new List<Outing>();
+        //private OutingRepo outingRepo = new OutingRepo();
         private int _idCounter = default;
 
         //create - add
@@ -30,7 +31,7 @@ namespace Challenge4_Repo
         }
         public Outing ViewOutingByID(int id)
         {
-            foreach(Outing outing in _ListOfOutings)
+            foreach (Outing outing in _ListOfOutings)
             {
                 if (outing.ID == id)
                 {
@@ -51,7 +52,7 @@ namespace Challenge4_Repo
             }
             return null;
         }*/
-        
+
         public Outing ViewOutingByType(OutingType typeOfOuting)
         {
             foreach (Outing outing in _ListOfOutings)
@@ -73,6 +74,22 @@ namespace Challenge4_Repo
         public decimal GetOutingCostTotalByType(OutingType typeOfOuting)
         {
             
+            //OutingType type = typeOfOuting;
+            //outingRepo.ViewOutingByType(OutingType);
+
+            foreach (Outing outing in _ListOfOutings)
+            {
+                if (outing.TypeOfOuting == typeOfOuting)
+                {
+                    decimal totalCost = 0;
+                    decimal totalCostOfOUtingType = totalCost + outing.TotalCost;
+                    ///return totalCostOfOUtingType;
+                    Console.WriteLine($"\n\nTotal Cost of Outings: ${totalCostOfOUtingType}");
+
+                }
+                return 0;
+            }
+            return 0;
         }
 
         //update 
@@ -80,7 +97,7 @@ namespace Challenge4_Repo
         {
             Outing oldOutingInfo = ViewOutingByID(id);
 
-            if(oldOutingInfo != null)
+            if (oldOutingInfo != null)
             {
                 oldOutingInfo.OutingTitle = updatedOutingInfo.OutingTitle;
                 oldOutingInfo.TypeOfOuting = updatedOutingInfo.TypeOfOuting;
