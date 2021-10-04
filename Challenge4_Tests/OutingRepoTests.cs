@@ -76,6 +76,7 @@ namespace Challenge4_Tests
             bool updateResult = _repo.UpdateExistingOuting(1, outing);
             Assert.IsTrue(updateResult);
         }
+
         [TestMethod]
         [DataRow(1, true)]
         [DataRow(5, false)]
@@ -85,6 +86,7 @@ namespace Challenge4_Tests
             bool updateResult = _repo.UpdateExistingOuting(id, outing);
             Assert.AreEqual(shouldUpdate, updateResult);
         }
+
         [TestMethod]
         public void DeleteOuting_ShouldReturnTrue()
         {
@@ -92,6 +94,7 @@ namespace Challenge4_Tests
             bool deleteResult = _repo.RemoveOutingFromInventory(id);
             Assert.IsTrue(deleteResult);
         }
+
         [TestMethod]
         public void DeleteOuting_ShouldReturnFalse()
         {

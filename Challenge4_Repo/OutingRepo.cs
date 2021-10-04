@@ -10,10 +10,9 @@ namespace Challenge4_Repo
     public class OutingRepo
     {
         private List<Outing> _ListOfOutings = new List<Outing>();
-        //private OutingRepo outingRepo = new OutingRepo();
+        
         private int _idCounter = default;
 
-        //create - add
         public bool AddOutingToList(Outing outingToBeAdded)
         {
             if (outingToBeAdded != null)
@@ -25,7 +24,6 @@ namespace Challenge4_Repo
             return false;
         }
 
-        //read - view
         public List<Outing> ViewAllOutings()
         {
             return _ListOfOutings;
@@ -49,7 +47,7 @@ namespace Challenge4_Repo
             {
                 if (outing.TypeOfOuting == typeOfOuting)
                 {
-                    Console.WriteLine($"\n\n{outing.OutingTitle}:\n" +
+                    Console.WriteLine($"\n{outing.OutingTitle}:\n" +
                     $"ID Number: {outing.ID}\n" +
                     $"Type: {outing.TypeOfOuting}\n" +
                     $"\tDate: {outing.OutingDate}\n" +
@@ -76,7 +74,6 @@ namespace Challenge4_Repo
             return true;
         }
 
-        //update 
         public bool UpdateExistingOuting(int id, Outing updatedOutingInfo)
         {
             Outing oldOutingInfo = ViewOutingByID(id);
@@ -93,7 +90,7 @@ namespace Challenge4_Repo
             }
             return false;
         }
-        //delete
+
         public bool RemoveOutingFromInventory(int id)
         {
             Outing outing = ViewOutingByID(id);

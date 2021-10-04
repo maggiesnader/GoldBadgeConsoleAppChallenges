@@ -11,7 +11,6 @@ namespace Challenge4_UI
     class ProgramUI
     {
         private OutingRepo outingRepo = new OutingRepo();
-        //private List<Outing> _ListOfOutings = new List<Outing>();
 
         public void Run()
         {
@@ -33,6 +32,7 @@ namespace Challenge4_UI
                         break;
                     case "2":
                         DisplayAllOutings();
+                        PressAnyKey();
                         break;
                     case "3":
                         DisplayCostByType();
@@ -41,7 +41,7 @@ namespace Challenge4_UI
                         DisplayTotalCost();
                         break;
                     case "5":
-                        //UpdateOuting
+                        UpdateOuting();
                         break;
                     case "6":
                         Exit();
@@ -115,7 +115,6 @@ namespace Challenge4_UI
                     $"Cost Per Person: ${outing.CostPerPerson}\n" +
                     $"Total Cost: ${outing.TotalCost}\n\n");
             }
-            PressAnyKey();
         }
 
         private void DisplayCostByType()
@@ -123,7 +122,7 @@ namespace Challenge4_UI
             Console.Clear();
             Outing newOuting = new Outing();
 
-            Console.WriteLine("Enter the type of outing you would like to see the total cost of(1, 2, 3, or 4):\n" +
+            Console.WriteLine("\nEnter the type of outing you would like to see the total cost of(1, 2, 3, or 4):\n" +
                     "1. Golf\n" +
                     "2. Bowling\n" +
                     "3. Amusement Park\n" +
@@ -133,19 +132,66 @@ namespace Challenge4_UI
             newOuting.TypeOfOuting = (OutingType)userInputInt;
 
             Console.Clear();
-            outingRepo.ViewOutingByType((OutingType)userInputInt);
             outingRepo.GetOutingCostTotalByType((OutingType)userInputInt);
+            Console.WriteLine("\nOutings:");
+            outingRepo.ViewOutingByType((OutingType)userInputInt);
             PressAnyKey();
         }
 
         private void DisplayTotalCost()
         {
+            Console.Clear();
             List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
             outingRepo.GetTotalCostOfAllOutings(_ListOfOutings);
             PressAnyKey();
         }
         
-        //UpdateOuting
+        private void UpdateOuting()
+        {
+            DisplayAllOutings();
+            Console.WriteLine("\n\nEnter the ID number of the outing to be updated:\n");
+            int oldOuting = int.Parse(Console.ReadLine());
+            Outing newOuting = new Outing();
+
+            Console.Clear();
+            Console.WriteLine("Enter the outing title:\n");
+            newOuting.OutingTitle = Console.ReadLine();
+
+            Console.WriteLine("\nEnter the type of outing (1, 2, 3 or 4):\n" +
+                "1. Golf\n" +
+                "2. Bowling\n" +
+                "3. Amusement Park\n" +
+                "4. Concert\n");
+            string typeAsString = Console.ReadLine();
+            int typeAsInt = int.Parse(typeAsString);
+            newOuting.TypeOfOuting = (OutingType)typeAsInt;
+
+            Console.WriteLine("\nEnter the number of Attendees:\n");
+            newOuting.NumberOfAttendees = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("\nEnter the Date of the Outing (yyyy, mm, dd):\n");
+            newOuting.OutingDate = DateTime.Parse(Console.ReadLine());
+
+            Console.WriteLine("\nEnter the cost of the outing per person:\n");
+            newOuting.CostPerPerson = decimal.Parse(Console.ReadLine());
+
+            Console.WriteLine("\nEnter the total cost of the event:\n");
+            newOuting.TotalCost = decimal.Parse(Console.ReadLine());
+
+            bool wasUpdated = outingRepo.UpdateExistingOuting(oldOuting, newOuting);
+            if (wasUpdated)
+            {
+                Console.Clear();
+                Console.WriteLine("\nOuting successfully updated!\n\n");
+                PressAnyKey();
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("\nUnable to update outing.\n\n");
+                PressAnyKey();
+            }
+        }
 
         private void PressAnyKey()
         {
@@ -188,6 +234,5 @@ namespace Challenge4_UI
             outingRepo.AddOutingToList(seedOuting7);
             outingRepo.AddOutingToList(seedOuting8);
         }
-
     }
 }
