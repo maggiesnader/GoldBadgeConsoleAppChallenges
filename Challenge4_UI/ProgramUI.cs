@@ -11,7 +11,7 @@ namespace Challenge4_UI
     class ProgramUI
     {
         private OutingRepo outingRepo = new OutingRepo();
-        private List<Outing> _ListOfOutings = new List<Outing>();
+        //private List<Outing> _ListOfOutings = new List<Outing>();
 
         public void Run()
         {
@@ -21,19 +21,10 @@ namespace Challenge4_UI
 
         private void Menu()
         {
-            
             bool keepRunning = true;
             while (keepRunning)
             {
-                Console.Clear();
-                Console.WriteLine("Komodo Insurance Outing Tracker:\n" +
-                    "Enter the number of the task you wish you complete:\n" +
-                    "1. Add a new Outing\n" +
-                    "2. Display all Outings.\n" +
-                    "3. Display total cost of outings to date by type of outing (Bowling, Golf, etc).\n" +
-                    "4. Display total cost of outings to date.\n" +
-                    "5. Update Outing Info.\n" +
-                    "6. Exit Program.\n");
+                DisplayMenu();
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
@@ -47,21 +38,33 @@ namespace Challenge4_UI
                         DisplayCostByType();
                         break;
                     case "4":
-                        //DisplayTotalCost
+                        DisplayTotalCost();
                         break;
                     case "5":
                         //UpdateOuting
                         break;
                     case "6":
-                        Console.WriteLine("Goodbye!");
-                        Console.ReadKey();
+                        Exit();
                         keepRunning = false;
                         break;
                     default:
-                        Console.WriteLine("Please enter a valid number.");
+                        ValidNumber();
                         break;
                 }
             }
+        }
+        
+        private void DisplayMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Komodo Insurance Outing Tracker:\n" +
+                "Enter the number of the task you wish you complete:\n" +
+                "1. Add a new Outing\n" +
+                "2. Display all Outings.\n" +
+                "3. Display total cost of outings to date by type of outing (Bowling, Golf, etc).\n" +
+                "4. Display total cost of outings to date.\n" +
+                "5. Update Outing Info.\n" +
+                "6. Exit Program.\n");
         }
 
         private void CreateNewOuting()
@@ -73,7 +76,7 @@ namespace Challenge4_UI
                 "Enter the outing title:\n");
             newOuting.OutingTitle = Console.ReadLine();
 
-            Console.WriteLine("\nEnter the type of outing:\n" +
+            Console.WriteLine("\nEnter the type of outing (1, 2, 3 or 4):\n" +
                 "1. Golf\n" +
                 "2. Bowling\n" +
                 "3. Amusement Park\n" +
@@ -119,7 +122,6 @@ namespace Challenge4_UI
         {
             Console.Clear();
             Outing newOuting = new Outing();
-            //List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
 
             Console.WriteLine("Enter the type of outing you would like to see the total cost of(1, 2, 3, or 4):\n" +
                     "1. Golf\n" +
@@ -136,7 +138,13 @@ namespace Challenge4_UI
             PressAnyKey();
         }
 
-        //DisplayTotalCost
+        private void DisplayTotalCost()
+        {
+            List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
+            outingRepo.GetTotalCostOfAllOutings(_ListOfOutings);
+            PressAnyKey();
+        }
+        
         //UpdateOuting
 
         private void PressAnyKey()
@@ -145,7 +153,21 @@ namespace Challenge4_UI
             Console.ReadKey();
         }
 
-        //SEEDLIST
+        private void Exit()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\nGoodbye!\n" +
+                "Press any key to close window.");
+            Console.ReadKey();
+        }
+
+        private void ValidNumber()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\nNot a valid number. Press enter to try again.");
+            Console.ReadKey();
+        }
+
         private void SeedOutingList()
         {
             Outing seedOuting1 = new Outing("Winter Holiday 2020", OutingType.Bowling, 25, new DateTime(2020, 12, 18), 59.23m, 1480.75m);

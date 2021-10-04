@@ -8,8 +8,8 @@ namespace Challenge4_POCO
 {
     public enum OutingType
     {
-        Golf =1,
-        Bowling,
+        Golf = 1,
+        Bowling ,
         AmusementPark,
         Concert
     }

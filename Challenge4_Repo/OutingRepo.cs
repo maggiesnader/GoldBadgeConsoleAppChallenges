@@ -24,11 +24,13 @@ namespace Challenge4_Repo
             }
             return false;
         }
+
         //read - view
         public List<Outing> ViewAllOutings()
         {
             return _ListOfOutings;
         }
+
         public Outing ViewOutingByID(int id)
         {
             foreach (Outing outing in _ListOfOutings)
@@ -40,18 +42,6 @@ namespace Challenge4_Repo
             }
             return null;
         }
-
-        /*public Outing ViewOutingByTitle(string outingTitle)
-        {
-            foreach(Outing outing in _ListOfOutings)
-            {
-                if(outing.OutingTitle.ToLower() == outingTitle)
-                {
-                    return outing;
-                }
-            }
-            return null;
-        }*/
 
         public Outing ViewOutingByType(OutingType typeOfOuting)
         {
@@ -71,25 +61,19 @@ namespace Challenge4_Repo
             return null;
         }
 
-        public decimal GetOutingCostTotalByType(OutingType typeOfOuting)
+        public bool GetOutingCostTotalByType(OutingType typeOfOuting)
         {
-            
-            //OutingType type = typeOfOuting;
-            //outingRepo.ViewOutingByType(OutingType);
+            decimal sum = _ListOfOutings.Where(x => x.TypeOfOuting == typeOfOuting).Sum(x => x.TotalCost);
+            Console.WriteLine($"\n\nTotal Cost of Outings: ${sum}");
+            return true;
+        }
 
-            foreach (Outing outing in _ListOfOutings)
-            {
-                if (outing.TypeOfOuting == typeOfOuting)
-                {
-                    decimal totalCost = 0;
-                    decimal totalCostOfOUtingType = totalCost + outing.TotalCost;
-                    ///return totalCostOfOUtingType;
-                    Console.WriteLine($"\n\nTotal Cost of Outings: ${totalCostOfOUtingType}");
-
-                }
-                return 0;
-            }
-            return 0;
+        public bool GetTotalCostOfAllOutings(List<Outing> _ListOfOutings)
+        {
+            decimal sum = _ListOfOutings.Select(x => x.TotalCost).Sum();
+            _ListOfOutings.Add(new Outing() { TotalCost = sum });
+            Console.WriteLine($"\n\nTotal Cost of All Outings: ${sum}");
+            return true;
         }
 
         //update 
