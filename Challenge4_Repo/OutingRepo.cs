@@ -69,7 +69,6 @@ namespace Challenge4_Repo
         public bool GetTotalCostOfAllOutings(List<Outing> _ListOfOutings)
         {
             decimal sum = _ListOfOutings.Select(x => x.TotalCost).Sum();
-            _ListOfOutings.Add(new Outing() { TotalCost = sum });
             Console.WriteLine($"\n\nTotal Cost of All Outings: ${sum}");
             return true;
         }

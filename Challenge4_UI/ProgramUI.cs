@@ -58,12 +58,12 @@ namespace Challenge4_UI
         {
             Console.Clear();
             Console.WriteLine("Komodo Insurance Outing Tracker:\n" +
-                "Enter the number of the task you wish you complete:\n" +
+                "Enter the number of the task you wish you complete (1, 2, 3, 4, 5 or 6):\n" +
                 "1. Add a new Outing\n" +
                 "2. Display all Outings.\n" +
                 "3. Display total cost of outings to date by type of outing (Bowling, Golf, etc).\n" +
-                "4. Display total cost of outings to date.\n" +
-                "5. Update Outing Info.\n" +
+                "4. Display total cost of all outings to date.\n" +
+                "5. Update an Outing's info.\n" +
                 "6. Exit Program.\n");
         }
 
@@ -198,7 +198,7 @@ namespace Challenge4_UI
             Console.WriteLine("\nPress any key to continue:");
             Console.ReadKey();
         }
-
+         
         private void Exit()
         {
             Console.Clear();

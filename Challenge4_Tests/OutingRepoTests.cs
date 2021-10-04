@@ -2,6 +2,7 @@
 using Challenge4_Repo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Challenge4_Tests
 {
@@ -18,15 +19,6 @@ namespace Challenge4_Tests
         }
 
         [TestMethod]
-        public void AddOutingToList_OutingIsNotNull_ReturnFalse()
-        {
-            Outing outing = null;
-            OutingRepo repo = new OutingRepo();
-            bool outingResult = repo.AddOutingToList(outing);
-            Assert.IsFalse(outingResult);
-        }
-
-        [TestMethod]
         public void AddOutingToList_OutingIsNotNull_ReturnTrue()
         {
             Outing outing = new Outing("Winter Holiday 2020", OutingType.Bowling, 25, new DateTime(2020, 12, 18), 59.23m, 1480.75m);
@@ -34,6 +26,16 @@ namespace Challenge4_Tests
             bool outingResult = repo.AddOutingToList(outing);
             Assert.IsTrue(outingResult);
         }
+
+        [TestMethod]
+        public void AddOutingToList_OutingIsNull_ReturnFalse()
+        {
+            Outing outing = null;
+            OutingRepo repo = new OutingRepo();
+            bool outingResult = repo.AddOutingToList(outing);
+            Assert.IsFalse(outingResult);
+        }
+
 
         [TestMethod]
         public void ViewOutingById_OutingExists_ReturnOuting()
@@ -54,7 +56,7 @@ namespace Challenge4_Tests
 
         [TestMethod]
         public void ViewOutingByType_OutingExists_ReturnOuting()
-        {
+        {                       
             OutingType typeOfOuting = OutingType.Bowling;
             Outing outingResult = _repo.ViewOutingByType(typeOfOuting);
             Assert.IsNotNull(outingResult);
@@ -68,6 +70,35 @@ namespace Challenge4_Tests
             Outing outingResult = _repo.ViewOutingByType(typeOfOuting);
             Assert.IsNull(outingResult);
         }
+
+        [TestMethod]
+        public void GetOutingCostTotalByType_OutingTypeExists_ReturnTrue()
+        {
+            OutingType typeOfOuting = OutingType.Bowling;
+            OutingRepo repo = new OutingRepo();
+            bool outingResult = repo.GetOutingCostTotalByType(typeOfOuting);
+            Assert.IsTrue(outingResult);
+        }
+
+        [TestMethod]
+        public void GetTotalCostOfAllOutings_OutingsExist_ReturnTrue()
+        {
+            //Outing outing = new Outing("Winter Holiday 2020", OutingType.Bowling, 25, new DateTime(2020, 12, 18), 59.23m, 1480.75m);
+            OutingRepo _repo = new OutingRepo();
+            List<Outing> _List = new List<Outing>();
+
+            bool outingResult = _repo.GetTotalCostOfAllOutings(_List);
+            Assert.IsTrue(outingResult);
+        }
+
+        [TestMethod]
+        public void GetTotalCostofAllOutings_OutingsDontExist_ReturnFalse()
+        {
+
+        }
+
+
+
 
         [TestMethod]
         public void UpdateExistingOuting_ShouldReturnTrue()
