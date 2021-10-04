@@ -55,16 +55,7 @@ namespace Challenge4_Tests
         }
 
         [TestMethod]
-        public void ViewOutingByType_OutingExists_ReturnOuting()
-        {                       
-            OutingType typeOfOuting = OutingType.Bowling;
-            Outing outingResult = _repo.ViewOutingByType(typeOfOuting);
-            Assert.IsNotNull(outingResult);
-            Assert.AreEqual(outingResult.TypeOfOuting, typeOfOuting);
-        }
-
-        [TestMethod]
-        public void ViewOutingByType_OutingExists_ReturnNull()
+        public void ViewOutingByType_OutingDoesNotExist_ReturnNull()
         {
             OutingType typeOfOuting = OutingType.Golf;
             Outing outingResult = _repo.ViewOutingByType(typeOfOuting);
@@ -90,15 +81,6 @@ namespace Challenge4_Tests
             bool outingResult = _repo.GetTotalCostOfAllOutings(_List);
             Assert.IsTrue(outingResult);
         }
-
-        [TestMethod]
-        public void GetTotalCostofAllOutings_OutingsDontExist_ReturnFalse()
-        {
-
-        }
-
-
-
 
         [TestMethod]
         public void UpdateExistingOuting_ShouldReturnTrue()

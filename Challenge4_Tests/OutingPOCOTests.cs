@@ -16,6 +16,7 @@ namespace Challenge4_Tests
             string actual = outing.OutingTitle;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SetOutingID_ShouldSetCorrectInt()
         {
@@ -25,6 +26,7 @@ namespace Challenge4_Tests
             int actual = outing.ID;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SetOutingType_ShouldSetCorrectOutingType()
         {
@@ -34,6 +36,7 @@ namespace Challenge4_Tests
             OutingType actual = outing.TypeOfOuting;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SetDateOfOuting_ShouldSetCorrectDateTime()
         {
@@ -43,6 +46,7 @@ namespace Challenge4_Tests
             DateTime actual = outing.OutingDate;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SetNumberOfAttendees_ShouldSetCorrectInt()
         {
@@ -52,6 +56,7 @@ namespace Challenge4_Tests
             int actual = outing.NumberOfAttendees;
             Assert.AreEqual(expected, actual);
         }
+
         [TestMethod]
         public void SetCostPerPerson_ShouldSetCorrectDecimal()
         {
@@ -61,6 +66,8 @@ namespace Challenge4_Tests
             decimal actual = outing.CostPerPerson;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
         public void SetTotalCost_ShouldSetCorrectDecimal()
         {
             Outing outing = new Outing();
