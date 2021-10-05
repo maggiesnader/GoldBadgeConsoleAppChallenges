@@ -10,7 +10,6 @@ namespace Challenge4_Repo
     public class OutingRepo
     {
         private List<Outing> _ListOfOutings = new List<Outing>();
-        
         private int _idCounter = default;
 
         public bool AddOutingToList(Outing outingToBeAdded)
