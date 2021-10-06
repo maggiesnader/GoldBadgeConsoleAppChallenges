@@ -1,6 +1,7 @@
 ﻿using Challenge5_POCO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,8 @@ namespace Challenge5_Repo
 
         public List<Customer> ViewAllCustomers()
         {
-            return (_ListOfCustomers);
+            _ListOfCustomers.Sort((x, y) => x.LastName.CompareTo(y.LastName));
+            return _ListOfCustomers;
         }
 
         public Customer ViewCustomerByID(int id)
@@ -69,6 +71,27 @@ namespace Challenge5_Repo
             }
             return false;
         }
+
+        //public DataTable ListToTable(List<Customer> listOfCustomers)
+       // {
+       //     Console.WriteLine();
+            
+            
+            
+            
+            
+            
+            //DataTable dt = new DataTable();
+            //dt.Columns.Add("lastname", typeof(string));
+
+           // foreach (Customer customer in listOfCustomers)
+            //{
+            //    dt.Rows.Add(new object[] { customer.LastName });
+           // }
+            //return dt;
+
+
+       // }
 
     }
 }

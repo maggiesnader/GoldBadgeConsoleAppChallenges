@@ -2,6 +2,7 @@
 using Challenge5_Repo;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace Challenge5_UI
     {
         private CustomerRepo customerRepo = new CustomerRepo();
         private List<Customer> _ListOfCustomers = new List<Customer>();
+        private DataTable dataTable = new DataTable();
+
 
         public void Run()
         {
@@ -32,17 +35,17 @@ namespace Challenge5_UI
                         CreateNewCustomer();
                         break;
                     case "2":
-                        //DisplayAllCustomersAphabetically();
+                        DisplayAlphabetically();
                         PressAnyKey();
                         break;
                     case "3":
                         UpdateCustomer();
                         break;
                     case "4":
-                        //DeleteCustomer();
+                        DeleteCustomer();
                         break;
                     case "5":
-                        //
+                        //MessageToBeSent();
                         break;
                     case "6":
                         Exit();
@@ -96,13 +99,41 @@ namespace Challenge5_UI
             Console.ReadKey();
         }
 
-        //DisplayAlphabetically
+        private void DisplayAlphabetically()
+        {
+            Console.Clear();
+            List<Customer> listOfCustomers = customerRepo.ViewAllCustomers();
+            Console.WriteLine("{0,15} {1,15} {2, 15}", "Last Name", "First Name", "Type");
+            Console.WriteLine("{0,15} {1,15} {2, 15}", "---------------", "---------------", "---------------");
+            foreach (Customer customer in listOfCustomers)
+            {
+                Console.WriteLine("{0,15} {1,15} {2, 15}", customer.LastName, customer.FirstName, customer.TypeOfCustomer);
+            }
+
+
+            //customerRepo.ListToTable(listOfCustomers);
+            // DataTable dt = new DataTable(); 
+            // dt.Columns.Add("Last Name", typeof(string));
+
+            //  foreach (Customer customer in listOfCustomers)
+            //  {
+            //       dt.Rows.Add(new object[] { customer.LastName });
+            //   }
+
+
+            //foreach (Customer customer in listOfCustomers)
+            //{
+            //    Console.WriteLine($"\n{customer.ID}\t" +
+            //         $"{customer.LastName}\t" +
+            //         $"{customer.FirstName}\n");
+            // }
+        }
 
         private void UpdateCustomer()
         {
             DisplayAlphabetically();
             Console.WriteLine("\nEnter the ID number of the Customer to be updated:\n");
-            int oldCustomer = int.Parse(Console.WriteLine());
+            int oldCustomer = int.Parse(Console.ReadLine());
             Customer newCustomer = new Customer();
 
             Console.Clear();
@@ -140,25 +171,24 @@ namespace Challenge5_UI
 
         private void DeleteCustomer()
         {
+            Console.Clear();
             DisplayAlphabetically();
             Console.WriteLine("\nEnter the ID number of the Customer to be deleted:\n");
-            int oldCustomer = int.Parse(Console.WriteLine());
-            Customer newCustomer = new Customer();
+            int userInput = int.Parse(Console.ReadLine());
 
-            if (newCustomer == null)
+            bool wasDeleted = customerRepo.DeleteCustomer(userInput);
+            if (wasDeleted)
             {
-                return false;
+                Console.WriteLine("\nThe Customer was successfully delted.");
             }
-            int initialCount = _ListOfCustomers.Count;
-            _ListOfCustomers.Remove(newCustomer);
-
-            if (initialCount > _ListOfCustomers.Count)
+            else
             {
-                return true;
+                Console.WriteLine("\nThe Customer could not be deleted.");
             }
-            return false;
+            PressAnyKey();
         }
 
+        //MessageToBeSent
 
         private void PressAnyKey()
         {
@@ -180,5 +210,24 @@ namespace Challenge5_UI
             Console.WriteLine("\n\nNot a valid number. Press enter to try again.");
             Console.ReadKey();
         }
+
+        private void SeedCustomerList()
+        {
+            Customer seedCustomer1 = new Customer("Maggie", "Snader", CustomerType.Potential, "snader.maggie@gmail.com");
+            Customer seedCustomer2 = new Customer("Josh", "Snader", CustomerType.Potential, "snader.josh@gmail.com");
+            Customer seedCustomer3 = new Customer("Janie", "Gard", CustomerType.Past, "gard.janie@gmail.com");
+            Customer seedCustomer4 = new Customer("Blake", "Weishaar", CustomerType.Past, "weishaar.blake@gmail.com");
+            Customer seedCustomer5 = new Customer("Rex", "Witham", CustomerType.Current, "witham.rex@gmail.com");
+            Customer seedCustomer6 = new Customer("Chelsea", "Herington", CustomerType.Current, "herington.chelsea@gmail.com");
+
+            customerRepo.AddCustomerToList(seedCustomer1);
+            customerRepo.AddCustomerToList(seedCustomer2);
+            customerRepo.AddCustomerToList(seedCustomer3);
+            customerRepo.AddCustomerToList(seedCustomer4);
+            customerRepo.AddCustomerToList(seedCustomer5);
+            customerRepo.AddCustomerToList(seedCustomer6);
+
+        }
+
     }
 }
