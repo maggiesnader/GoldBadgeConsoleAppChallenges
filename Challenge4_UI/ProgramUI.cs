@@ -38,12 +38,9 @@ namespace Challenge4_UI
                         DisplayCostByType();
                         break;
                     case "4":
-                        DisplayTotalCost();
-                        break;
-                    case "5":
                         UpdateOuting();
                         break;
-                    case "6":
+                    case "5":
                         Exit();
                         keepRunning = false;
                         break;
@@ -57,14 +54,13 @@ namespace Challenge4_UI
         private void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("Komodo Insurance Outing Tracker:\n" +
+            Console.WriteLine("Komodo Insurance Outing Tracker:\n\n" +
                 "Enter the number of the task you wish you complete (1, 2, 3, 4, 5 or 6):\n" +
-                "1. Add a new Outing\n" +
-                "2. Display all Outings.\n" +
-                "3. Display total cost of outings to date by type of outing (Bowling, Golf, etc).\n" +
-                "4. Display total cost of all outings to date.\n" +
-                "5. Update an Outing's info.\n" +
-                "6. Exit Program.\n");
+                "\t1. Add a new Outing.\n" +
+                "\t2. Display all Outings with Total Cost.\n" +
+                "\t3. Display total cost of outings to date by type of outing (Bowling, Golf, etc).\n" +
+                "\t4. Update an Outing's info.\n" +
+                "\t5. Exit Program.\n");
         }
 
         private void CreateNewOuting()
@@ -106,15 +102,16 @@ namespace Challenge4_UI
         {
             Console.Clear();
             List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
-
+            Console.WriteLine("List of All Outings:\n");
+            Console.WriteLine("{0, -7} {1, -25} {2, -15} {3, -25} {4, -10} {5, -15} {6, -15}",
+                        "ID#", "Title", "Type", "Date", "#Guests", "Cost/Person", "Event Cost");
             foreach (Outing outing in _ListOfOutings)
             {
-                Console.WriteLine($"{outing.OutingTitle}:\n" +
-                    $"ID Number: {outing.ID}\n" +
-                    $"Type: {outing.TypeOfOuting}\n" +
-                    $"Cost Per Person: ${outing.CostPerPerson}\n" +
-                    $"Total Cost: ${outing.TotalCost}\n\n");
+                Console.WriteLine("{0, -7} {1, -25} {2, -15} {3, -25} {4, -10} {5, -15} {6, -15}",
+                        outing.ID, outing.OutingTitle, outing.TypeOfOuting, outing.OutingDate, outing.NumberOfAttendees, "$" + outing.CostPerPerson, "$" + outing.TotalCost);
+
             }
+            outingRepo.GetTotalCostOfAllOutings(_ListOfOutings);
         }
 
         private void DisplayCostByType()
@@ -132,17 +129,9 @@ namespace Challenge4_UI
             newOuting.TypeOfOuting = (OutingType)userInputInt;
 
             Console.Clear();
-            outingRepo.GetOutingCostTotalByType((OutingType)userInputInt);
-            Console.WriteLine("\nOutings:");
+            Console.WriteLine($"\n{newOuting.TypeOfOuting} Outings:\n");
             outingRepo.ViewOutingByType((OutingType)userInputInt);
-            PressAnyKey();
-        }
-
-        private void DisplayTotalCost()
-        {
-            Console.Clear();
-            List<Outing> _ListOfOutings = outingRepo.ViewAllOutings();
-            outingRepo.GetTotalCostOfAllOutings(_ListOfOutings);
+            outingRepo.GetOutingCostTotalByType((OutingType)userInputInt);
             PressAnyKey();
         }
         

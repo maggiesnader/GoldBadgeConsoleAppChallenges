@@ -42,17 +42,15 @@ namespace Challenge4_Repo
 
         public Outing ViewOutingByType(OutingType typeOfOuting)
         {
+            Console.WriteLine("{0, -7} {1, -25} {2, -15} {3, -25} {4, -10} {5, -15} {6, -15}",
+                        "ID#", "Title", "Type", "Date", "#Guests", "Cost/Person", "Event Cost");
+
             foreach (Outing outing in _ListOfOutings)
             {
                 if (outing.TypeOfOuting == typeOfOuting)
                 {
-                    Console.WriteLine($"\n{outing.OutingTitle}:\n" +
-                    $"ID Number: {outing.ID}\n" +
-                    $"Type: {outing.TypeOfOuting}\n" +
-                    $"\tDate: {outing.OutingDate}\n" +
-                    $"\tNumber of Attendees: {outing.NumberOfAttendees}\n" +
-                    $"\tCost Per Person: ${outing.CostPerPerson}\n" +
-                    $"\tTotal Cost: ${outing.TotalCost}");
+                    Console.WriteLine("{0, -7} {1, -25} {2, -15} {3, -25} {4, -10} {5, -15} {6, -15}",
+                        outing.ID, outing.OutingTitle, outing.TypeOfOuting, outing.OutingDate, outing.NumberOfAttendees, "$" + outing.CostPerPerson, "$" + outing.TotalCost);
                 }
             }
             return null;
@@ -61,14 +59,16 @@ namespace Challenge4_Repo
         public bool GetOutingCostTotalByType(OutingType typeOfOuting)
         {
             decimal sum = _ListOfOutings.Where(x => x.TypeOfOuting == typeOfOuting).Sum(x => x.TotalCost);
-            Console.WriteLine($"\n\nTotal Cost of Outings: ${sum}");
+            Console.WriteLine("\n");
+            Console.WriteLine("{0, 111}", $"Total Cost of {typeOfOuting} Outings: ${sum}");
             return true;
         }
 
         public bool GetTotalCostOfAllOutings(List<Outing> _ListOfOutings)
         {
             decimal sum = _ListOfOutings.Select(x => x.TotalCost).Sum();
-            Console.WriteLine($"\n\nTotal Cost of All Outings: ${sum}");
+            Console.WriteLine("\n");
+            Console.WriteLine("{0, 111}", $"Total Cost of All Outings: ${sum}");
             return true;
         }
 
