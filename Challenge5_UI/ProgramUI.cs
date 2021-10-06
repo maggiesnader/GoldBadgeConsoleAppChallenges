@@ -12,10 +12,6 @@ namespace Challenge5_UI
     class ProgramUI
     {
         private CustomerRepo customerRepo = new CustomerRepo();
-        private List<Customer> _ListOfCustomers = new List<Customer>();
-        private DataTable dataTable = new DataTable();
-
-
         public void Run()
         {
             SeedCustomerList();
@@ -45,9 +41,6 @@ namespace Challenge5_UI
                         DeleteCustomer();
                         break;
                     case "5":
-                        //MessageToBeSent();
-                        break;
-                    case "6":
                         Exit();
                         keepRunning = false;
                         break;
@@ -61,14 +54,13 @@ namespace Challenge5_UI
         private void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("Komodo Insurance Customer Greeting Email Sorter\n" +
-                "Enter the number of the tast you would like to complete (1, 2, 4, 5, 6, or 7):\n" +
-                "1. Create a new Customer.\n" +
-                "2. View all customers in alphabetical order.\n" +
-                "3. Update an existing Customer.\n" +
-                "4. Delete an existing Customer.\n" +
-                "5. \n" +
-                "6. Exit Program\n");
+            Console.WriteLine("Komodo Insurance Customer Greeting Email Sorter\n\n" +
+                "Enter the number of the task you would like to complete (1, 2, 4 or 5):\n" +
+                "\t1. Create a new Customer.\n" +
+                "\t2. View all customers in alphabetical order.\n" +
+                "\t3. Update an existing Customer.\n" +
+                "\t4. Delete an existing Customer.\n" +
+                "\t5. Exit Program\n");
         }
 
         private void CreateNewCustomer()
@@ -77,16 +69,16 @@ namespace Challenge5_UI
             Customer newCustomer = new Customer();
 
             Console.WriteLine("Add a new Customer:\n\n" +
-                "Enter the Customer's First Name:\n");
+                "\nEnter the Customer's First Name:\n");
             newCustomer.FirstName = Console.ReadLine();
 
-            Console.WriteLine("Enter the Customer's Last Name:\n");
+            Console.WriteLine("\nEnter the Customer's Last Name:\n");
             newCustomer.LastName = Console.ReadLine();
 
-            Console.WriteLine("Enter the Customer's Email:\n");
+            Console.WriteLine("\nEnter the Customer's Email:\n");
             newCustomer.Email = Console.ReadLine();
 
-            Console.WriteLine("Enter the Customer's Type (1, 2 or 3):\n" +
+            Console.WriteLine("\nEnter the Customer's Type (1, 2 or 3):\n" +
                 "1. Current\n" +
                 "2. Past\n" +
                 "3. Potential\n");
@@ -103,30 +95,28 @@ namespace Challenge5_UI
         {
             Console.Clear();
             List<Customer> listOfCustomers = customerRepo.ViewAllCustomers();
-            Console.WriteLine("{0,15} {1,15} {2, 15}", "Last Name", "First Name", "Type");
-            Console.WriteLine("{0,15} {1,15} {2, 15}", "---------------", "---------------", "---------------");
+            Console.WriteLine("\nCustomer List:\n");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "Last Name", "First Name", "ID#", "Type", "\tGreeting Email");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+            Console.WriteLine("\n");
             foreach (Customer customer in listOfCustomers)
             {
-                Console.WriteLine("{0,15} {1,15} {2, 15}", customer.LastName, customer.FirstName, customer.TypeOfCustomer);
+                if (customer.TypeOfCustomer == CustomerType.Current)
+                {
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "Thank you for your work with us. We appreciate your loyalty. Here's a coupon.");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                }
+                if (customer.TypeOfCustomer == CustomerType.Past)
+                {
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "It's been a long time since we've heard from you, we want you back.");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                }
+                if (customer.TypeOfCustomer == CustomerType.Potential)
+                {
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "We currently have the lowest rates on Helicopter Insurance!");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                }
             }
-
-
-            //customerRepo.ListToTable(listOfCustomers);
-            // DataTable dt = new DataTable(); 
-            // dt.Columns.Add("Last Name", typeof(string));
-
-            //  foreach (Customer customer in listOfCustomers)
-            //  {
-            //       dt.Rows.Add(new object[] { customer.LastName });
-            //   }
-
-
-            //foreach (Customer customer in listOfCustomers)
-            //{
-            //    Console.WriteLine($"\n{customer.ID}\t" +
-            //         $"{customer.LastName}\t" +
-            //         $"{customer.FirstName}\n");
-            // }
         }
 
         private void UpdateCustomer()
@@ -179,16 +169,16 @@ namespace Challenge5_UI
             bool wasDeleted = customerRepo.DeleteCustomer(userInput);
             if (wasDeleted)
             {
-                Console.WriteLine("\nThe Customer was successfully delted.");
+                Console.Clear();
+                Console.WriteLine("\nThe Customer was successfully deleted.");
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("\nThe Customer could not be deleted.");
             }
             PressAnyKey();
         }
-
-        //MessageToBeSent
 
         private void PressAnyKey()
         {

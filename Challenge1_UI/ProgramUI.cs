@@ -16,6 +16,7 @@ namespace Challenge1_UI
             SeedMeals();
             Menu();
         }
+
         private void Menu()
         {
             bool keepRunning = true;
@@ -59,6 +60,7 @@ namespace Challenge1_UI
                 }
             }
         }
+
         private void DisplayAllMeals()
         {
             Console.Clear();
@@ -69,6 +71,7 @@ namespace Challenge1_UI
                     $"\t{meal.MealDescription}\n");
             }
         }
+
         private void DisplayByMealNumber()
         {
             Console.Clear();
@@ -89,6 +92,7 @@ namespace Challenge1_UI
             }
             PressAnyKey();
         }
+
         private void CreateNewMeal()
         {
             Console.Clear();
@@ -109,6 +113,7 @@ namespace Challenge1_UI
             Console.WriteLine("\nUpdate Complete. Press any key to continue:");
             Console.ReadKey();
         }
+
         private void DeleteMeal()
         {
             Console.Clear();
@@ -127,11 +132,13 @@ namespace Challenge1_UI
             }
             PressAnyKey();
         }
+
         private void PressAnyKey()
         {
             Console.WriteLine("\nPress any key to continue:");
             Console.ReadKey();
         }
+
         private void SeedMeals()
         {
             MenuItem seedMeal1 = new MenuItem("1", "Grilled Cheese", "Smoked Cheddar and Gouda cheese on Rye bread, served with a cup of Tomato Soup.", "Rye bread, cheddar cheese, gouda cheese, butter, tomato, herbs", 8.99m);
