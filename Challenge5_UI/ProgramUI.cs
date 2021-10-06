@@ -96,9 +96,10 @@ namespace Challenge5_UI
             Console.Clear();
             List<Customer> listOfCustomers = customerRepo.ViewAllCustomers();
             Console.WriteLine("\nCustomer List:\n");
-            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "Last Name", "First Name", "ID#", "Type", "\tGreeting Email");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "Last Name", "First Name", "ID#", "Type", "Greeting Email");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "____________", "____________", "___", "__________", "_______________________________________________________________________________");
             Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
-            Console.WriteLine("\n");
+            //Console.WriteLine("\n");
             foreach (Customer customer in listOfCustomers)
             {
                 if (customer.TypeOfCustomer == CustomerType.Current)
