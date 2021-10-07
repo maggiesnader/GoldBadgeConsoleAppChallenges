@@ -56,6 +56,16 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Challenge5_POCO\Challenge5_POCO.csproj">
+      <Project>{63e88ed6-993a-41ec-a9ae-34e05686f5a7}</Project>
+      <Name>Challenge5_POCO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Challenge5_Repo\Challenge5_Repo.csproj">
+      <Project>{06a3690d-f12b-4350-95fe-d8ae6ce6c97e}</Project>
+      <Name>Challenge5_Repo</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

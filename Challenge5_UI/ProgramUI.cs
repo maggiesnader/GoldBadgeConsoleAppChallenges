@@ -96,26 +96,34 @@ namespace Challenge5_UI
             Console.Clear();
             List<Customer> listOfCustomers = customerRepo.ViewAllCustomers();
             Console.WriteLine("\nCustomer List:\n");
-            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "Last Name", "First Name", "ID#", "Type", "Greeting Email");
-            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "____________", "____________", "___", "__________", "_______________________________________________________________________________");
-            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
-            //Console.WriteLine("\n");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                "Last Name", "First Name", "ID#", "Type", "Greeting Email");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                "____________", "____________", "___", "__________", "_______________________________________________________________________________");
+            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
             foreach (Customer customer in listOfCustomers)
             {
                 if (customer.TypeOfCustomer == CustomerType.Current)
                 {
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "Thank you for your work with us. We appreciate your loyalty. Here's a coupon.");
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "Thank you for your work with us. We appreciate your loyalty. Here's a coupon.");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
                 }
                 if (customer.TypeOfCustomer == CustomerType.Past)
                 {
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "It's been a long time since we've heard from you, we want you back.");
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "It's been a long time since we've heard from you, we want you back.");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
                 }
                 if (customer.TypeOfCustomer == CustomerType.Potential)
                 {
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "We currently have the lowest rates on Helicopter Insurance!");
-                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        customer.LastName, customer.FirstName, customer.ID, customer.TypeOfCustomer, "We currently have the lowest rates on Helicopter Insurance!");
+                    Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
+                        "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
                 }
             }
         }
