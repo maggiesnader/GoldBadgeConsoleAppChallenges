@@ -10,6 +10,7 @@ namespace Challenge1_Repo
     public class MenuItemRepo
     {
         private List<MenuItem> _ListOfMenuItems = new List<MenuItem>();
+
         public bool AddMenuItemToList(MenuItem itemToBeAdded)
         {
             if(itemToBeAdded != null)

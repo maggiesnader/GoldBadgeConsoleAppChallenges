@@ -22,13 +22,7 @@ namespace Challenge1_UI
             bool keepRunning = true;
             while (keepRunning)
             {
-                Console.WriteLine("Komodo Cafe\n" +
-                "Select a Menu Option:\n" +
-                "1. View All Meals\n" +
-                "2. View Meal by Meal Number\n" +
-                "3. Add Meal\n" +
-                "4. Delete Meal\n" +
-                "5. Exit");
+                DisplayMenu();
                 string userInput = Console.ReadLine();
                 switch (userInput)
                 {
@@ -50,15 +44,25 @@ namespace Challenge1_UI
                         Console.Clear();
                         break;
                     case "5":
-                        Console.WriteLine("Goodbye!");
-                        Console.ReadKey();
+                        Exit();
                         keepRunning = false;
                         break;
                     default:
-                        Console.WriteLine("Please enter a valid number.");
-                        break;
+                        ValidNumber();
+                            break;
                 }
             }
+        }
+
+        private void DisplayMenu()
+        {
+            Console.WriteLine("Komodo Cafe\n\n" +
+                "Select a Menu Option:\n" +
+                "\t1. View All Meals\n" +
+                "\t2. View Meal by Meal Number\n" +
+                "\t3. Add Meal\n" +
+                "\t4. Delete Meal\n" +
+                "\t5. Exit");
         }
 
         private void DisplayAllMeals()
@@ -136,6 +140,21 @@ namespace Challenge1_UI
         private void PressAnyKey()
         {
             Console.WriteLine("\nPress any key to continue:");
+            Console.ReadKey();
+        }
+
+        private void Exit()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\nGoodbye!\n" +
+                "Press any key to close window.");
+            Console.ReadKey();
+        }
+
+        private void ValidNumber()
+        {
+            Console.Clear();
+            Console.WriteLine("\n\nNot a valid number. Press enter to try again.");
             Console.ReadKey();
         }
 
