@@ -100,8 +100,6 @@ namespace Challenge5_UI
                 "Last Name", "First Name", "ID#", "Type", "Greeting Email");
             Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
                 "____________", "____________", "___", "__________", "_______________________________________________________________________________");
-            Console.WriteLine("{0, -12} {1, -12} {2, -3} {3, -10} {4, -50}", 
-                "------------", "------------", "---", "----------", "-------------------------------------------------------------------------------");
             foreach (Customer customer in listOfCustomers)
             {
                 if (customer.TypeOfCustomer == CustomerType.Current)
